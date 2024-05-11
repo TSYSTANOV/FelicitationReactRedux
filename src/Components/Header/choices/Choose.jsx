@@ -1,36 +1,29 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import styles from "./choises.module.css";
-const holidayList = {
-  newyear: "Новый год",
-  birthdayWomen: "День рождения  Ж",
-  birthdayMen: "День рождения  М",
-  womenDay: "8 марта",
-  knowladgeDay: "День знаний",
-};
+import { holidayContent } from "../../../context/holidayContext";
+
 function Choose() {
-  const [isOpenChoises, setIsOpenChoises] = useState(false);
-  const [holiday, setHoliday] = useState("Выбрать праздник");
+  const [isOpenChoises, setIsOpenChoises] = useState(false);;
+  const {holiday, holidays, changeHoliday} = useContext(holidayContent)
   function toggleChoises() {
     setIsOpenChoises(!isOpenChoises);
   }
-  function changeHoliday(title) {
-    setHoliday(title);
-    toggleChoises();
-  }
+
   return (
     <div className={styles.wrapper}>
       <button className={styles.button} onClick={toggleChoises}>
-        {holiday}
+        {holidays[holiday] || 'Выберите праздник'}
       </button>
       {isOpenChoises && (
         <ul className={styles.list}>
-          {Object.entries(holidayList).map((item) => {
+          {Object.entries(holidays).map((item) => {
             return (
               <li
                 className={styles.item}
                 key={item[0]}
                 onClick={() => {
-                  changeHoliday(item[1]);
+                  changeHoliday(item[0]);
+                  toggleChoises()
                 }}
               >
                 {item[1]}

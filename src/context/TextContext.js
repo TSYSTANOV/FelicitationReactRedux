@@ -1,21 +1,12 @@
-import { createContext, useState } from "react";
-
+import { createContext, useContext, useState } from "react";
+import { useText } from "../hooks/useText";
+import { holidayContent } from "./holidayContext";
 export const textContent = createContext({});
 export const TextContext = ({ children }) => {
-  const [text, setText] = useState(
-    `Поздравляю с днем рожденья!
-        Пусть будет жизнь полна веселья,
-        Не будет грусти и хлопот,
-        А только счастье круглый год!
-        
-        Желаю творческих успехов,
-        Прекрасных дней, улыбок, смеха.
-        Любви, душевного тепла,
-        Как сказка, чтобы жизнь была!
-        `
-  );
+  const {holiday} = useContext(holidayContent)
+  const [text] = useText(holiday)
   return (
-    <textContent.Provider value={{ text, setText }}>
+    <textContent.Provider value={ text }>
       {children}
     </textContent.Provider>
   );
