@@ -6,17 +6,20 @@ import { Card } from "./Components/Card/Card";
 import { TextContext } from "./context/TextContext";
 import { ImageContext } from "./context/imageContext";
 import { HolidayContext } from "./context/holidayContext";
+
 function App() {
   return (
-    <HolidayContext>
-      <ImageContext>
-        <TextContext>
-          <Header />
-          <Card />
-          <Footer />
-        </TextContext>
-      </ImageContext>
-    </HolidayContext>
+    // <HolidayContext>
+    // <ImageContext>
+    // {/* <TextContext> */}
+    <>
+      <Header />
+      <Card />
+      <Footer />
+    </>
+    // {/* </TextContext> */}
+    // {/* </ImageContext> */}
+    // </HolidayContext>
   );
 }
 
